@@ -1,0 +1,6 @@
+[submodule "marksai-backend"]
+	path = marksai-backend
+	url = git@github.com:headexpanded/marksai-backend.git
+[submodule "marksai-frontend"]
+	path = marksai-frontend
+	url = git@github.com:headexpanded/marksai-backend.git

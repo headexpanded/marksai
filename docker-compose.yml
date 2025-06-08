@@ -1,0 +1,29 @@
+services:
+  marksai-backend:
+    build: ./marksai-backend
+    container_name: marksai-backend
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./marksai-backend/pb_data:/pb_data
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - CORS_ORIGIN=http://localhost:5173
+    networks:
+      - marksai-net
+    restart: unless-stopped
+
+  marksai-frontend:
+    build: ./marksai-frontend
+    container_name: marksai-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - marksai-backend
+    networks:
+      - marksai-net
+    restart: unless-stopped
+
+networks:
+  marksai-net:
+    driver: bridge
